@@ -13,7 +13,7 @@ int exec(int op, int a, int b)
 		b = c;
 	}
 
-	scanf_s( "%i %i %i", &op, &a, &b);
+	
 	switch (op)
 	{
 	case 0:
@@ -47,8 +47,13 @@ int exec(int op, int a, int b)
 	case 7:
 	case 13:
 	case 77:
-		result = a%b;
-		break;
+		if (b == 0)
+		{
+			result = 0;
+		}
+		else
+			result = a%b;
+			break;
 
 	case 8:
 		//max
