@@ -3,6 +3,15 @@
 int exec(int op, int a, int b) 
 {
 	int result, res;
+	int c;
+
+	if (op < 0)
+	{
+		op = -op;
+		c = a;	
+		a = b;
+		b = c;
+	}
 
 	scanf_s( "%i %i %i", &op, &a, &b);
 	switch (op)
