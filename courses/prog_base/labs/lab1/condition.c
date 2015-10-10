@@ -45,16 +45,17 @@ int satisfies(int a, int b, int c)
 	   sum2 = Sum - min;
 
 	  
-		if ((sum2 < -256) && (modmin < 256) && ((modmin == 2) || (modmin == 4) || (modmin == 8) || (modmin == 16) || (modmin == 32) || (modmin == 64) || (modmin == 128)))
+		if ((sum2 < -256) && (modmin < 256) && fmod(log10f(modmin)/log10f(2),1) == 0)
 			{
 				result = 1;
 			}
 		else
 		{
-			if ((sum2 > modmin) && (sum2 > -256));
+			if ((sum2 > modmin) && (sum2 > -256))
 			{
 				result = 1;
 			}
+			else
 				result = 0;
 		}
 		
