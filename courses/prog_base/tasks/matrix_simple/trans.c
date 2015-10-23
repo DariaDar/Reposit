@@ -30,7 +30,7 @@ void fillRand(int mat[4][4])
 }
 
 
-void transposSide(int mat[4][4]);
+void transposSide(int mat[4][4])
 {
 	int i;
 	int j;
