@@ -18,7 +18,6 @@ void fillRand(int mat[4][4])
 	int i = 0;
 	int j = 0;
 
-	srand (time(NULL));
 	for (i = 0; i < 4; i++)
 	{
 		for (j = 0; j < 4; j++)
@@ -31,17 +30,18 @@ void fillRand(int mat[4][4])
 }
 
 
-void transposMain(int mat[4][4])
+void transposSide(int mat[4][4]);
 {
 	int i;
 	int j;
+	int a, b;
 	int mat1 [4][4];
 
-	for (i = 0; i < 4; i++)
+	for (i = 0, a = 3; i < 4; i++, a--)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0, b = 3; j < 4; j++, b--)
 		{
-		    mat1 [i][j] = mat [i][j];
+		    mat1 [i][j] = mat [b][a];
 
 		}
 	}
@@ -51,7 +51,7 @@ void transposMain(int mat[4][4])
 		for (j = 0; j < 4; j++)
 		{
 
-            mat [i][j] = mat1[j][i];
+            mat [i][j] = mat1[i][j];
 		}
 	}
 }
