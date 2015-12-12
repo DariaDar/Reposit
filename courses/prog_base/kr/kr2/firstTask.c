@@ -62,8 +62,6 @@ int findWords(char * buf , int len, int min, int Max)
 
         posEnd = posEnd + index;
 
-        //word = &buf[posStart];
-
         if((posEnd - posStart) <= min)
         {
             min = posEnd - posStart;
@@ -100,7 +98,7 @@ void file(const char * pread, const char * pwrite)
     len = strlen(str);
     resWord = findWords(str,len, min, Max);
 
-    printf("Res: %i", resWord);
+    printf("Your result (MaxLen - MiLen): %i", resWord);
 
     fp = fopen(pwrite, "w");
     if(fp == NULL)
@@ -118,5 +116,6 @@ void file(const char * pread, const char * pwrite)
 int main(int argc, char * argv[])
 {
     file(argv[1],argv[2]);
+
     return 0;
 }
