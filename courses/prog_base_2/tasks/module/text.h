@@ -1,3 +1,5 @@
+#ifndef TEXT_H
+#define TEXT_H
 #include <stdlib.h>
 
 typedef struct strin
@@ -33,3 +35,5 @@ void text_getListForm(text_t pStruct, int formatting);
 void text_deleteStr(text_t pStruct, int index);
 
 void text_Insert(text_t pStruct, int index, char * _pStr);
+
+#endif // TEXT_H
