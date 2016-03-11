@@ -37,7 +37,7 @@ int main()
             text_deleteStr(pStruct, index);
             break;
         case 3:
-            printf("Write INDEX (0...%i) and then your format (0..3):\n", pStruct->cntReal - 1);
+            printf("Write INDEX (0...%i) and then your format (0..3):\n", (text_getRealCntStr(pStruct) - 1));
             scanf("%i %i", &index, &format);
             text_setFormat(index, format,pStruct);
             break;

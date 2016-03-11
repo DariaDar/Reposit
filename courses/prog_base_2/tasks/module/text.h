@@ -2,20 +2,6 @@
 #define TEXT_H
 #include <stdlib.h>
 
-typedef struct strin
-{
-    int formatting;
-    char *pStr;
-} STRIN;
-
-struct text_s
-{
-    int cntMax;
-    int cntReal;
-    STRIN *StrIn;
-};
-
-
 typedef struct text_s * text_t;
 
 //constructor

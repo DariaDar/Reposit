@@ -2,6 +2,18 @@
 #include <stdio.h>
 #include <string.h>
 
+typedef struct strin
+{
+    int formatting;
+    char *pStr;
+} STRIN;
+
+struct text_s
+{
+    int cntMax;
+    int cntReal;
+    STRIN *StrIn;
+};
 
 
 text_t text_new( int cntMax, char * str)
