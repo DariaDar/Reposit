@@ -4,7 +4,7 @@
 
 int main()
 {
-    int n;
+    int n, i;
     int index, format;
     int cntMax;
     char str[200];
@@ -20,7 +20,11 @@ int main()
     printf("4.Get list of your sentences with special format.\n5.Get count of your sentences.\n6.Exit\n\n ");
     for(;;)
     {
-        text_getList(pStruct);
+        for(i = 0; i < text_getRealCntStr(pStruct); i++)
+        {
+            printf("%i. %s (%i)\n", i, text_getString(pStruct, i), text_getFormat(pStruct,i));
+        }
+
         printf("\n\nEnter number of command: ");
         fflush(stdin);
         scanf("%i", &n);
@@ -44,7 +48,14 @@ int main()
         case 4:
             printf("Write number of format (0..3):\n");
             scanf("%i", &format);
-            text_getListForm(pStruct,format);
+            char ** strTmp = text_getStrSpecForm(pStruct,format);
+            for(i = 0; i < text_getRealCntStr(pStruct) ; i++)
+            {
+                if(strTmp[i] != NULL)
+                {
+                    printf("%i. %s\n",i,strTmp[i]);
+                }
+            }
             break;
         case 5:
             printf("%i", text_getRealCntStr(pStruct));

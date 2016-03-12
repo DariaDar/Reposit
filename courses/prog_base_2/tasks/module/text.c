@@ -13,16 +13,21 @@ struct text_s
     int cntMax;
     int cntReal;
     STRIN *StrIn;
+    char ** pArr;
 };
 
 
-text_t text_new( int cntMax, char * str)
+text_t text_new(int cntMax, char * str)
 {
     text_t pStruct;
 
     pStruct = calloc(1, sizeof(struct text_s));
     pStruct->cntMax = cntMax;
-
+    pStruct->pArr = calloc(cntMax, sizeof(char*));
+    for(int i = 0; i < cntMax; i++)
+    {
+        pStruct->pArr[i] = NULL;
+    }
     pStruct->StrIn = calloc(cntMax,sizeof(STRIN));
     if(str != NULL)
     {
@@ -31,7 +36,6 @@ text_t text_new( int cntMax, char * str)
         pStruct->StrIn[0].formatting = 0;
         pStruct->cntReal = 1;
     }
-    //printf("%s\n", pStruct->StrIn[0].pStr);
 
     return pStruct;
 }
@@ -48,23 +52,15 @@ void text_delete(text_t textStruct)
         }
     }
     free(textStruct->StrIn);
+    free(textStruct->pArr);
     free(textStruct);
 }
 
+
 int text_getRealCntStr(text_t pStruct)
 {
-    int i;
-    pStruct->cntReal = 0;
-    for(i = 0; i < pStruct->cntMax; i++)
-    {
-        if(pStruct->StrIn[i].pStr != NULL)
-        {
-            pStruct->cntReal++;
-        }
-    }
     return pStruct->cntReal;
 }
-
 
 void text_setFormat(int index, int formatNumber, text_t pStruct)
 {
@@ -79,17 +75,6 @@ void text_setFormat(int index, int formatNumber, text_t pStruct)
 
 }
 
-void text_getListForm(text_t pStruct, int format)
-{
-    int i;
-    for(i = 0; i < pStruct->cntReal; i++)
-    {
-        if(pStruct->StrIn[i].formatting == format)
-        {
-            printf("%i. %s\n", i,pStruct->StrIn[i].pStr);
-        }
-    }
-}
 
 void text_deleteStr(text_t pStruct, int index)
 {
@@ -137,11 +122,32 @@ void text_Insert(text_t pStruct, int index, char * _pStr)
     pStruct->StrIn[index].formatting = 0;
     pStruct->cntReal++;
 }
-void text_getList(text_t pStruct)
+
+char * text_getString(text_t pStruct, int index)
+{
+    if(index < 0 || index >= pStruct->cntReal)
+        return NULL;
+    return pStruct->StrIn[index].pStr;
+}
+
+int text_getFormat(text_t pStruct, int index)
+{
+    return pStruct->StrIn[index].formatting;
+}
+
+char ** text_getStrSpecForm(text_t pStruct, int format)
 {
     int i;
+    if(format < 0 || format > 3)
+    {
+        return NULL;
+    }
     for(i = 0; i < pStruct->cntReal; i++)
     {
-        printf("%i. %s (%i)\n", i, pStruct->StrIn[i].pStr, pStruct->StrIn[i].formatting);
+        if(format == pStruct->StrIn[i].formatting)
+        {
+            pStruct->pArr[i] = pStruct->StrIn[i].pStr;
+        }
     }
+    return pStruct->pArr;
 }
