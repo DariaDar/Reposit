@@ -24,7 +24,10 @@ void randomness(LogCallback equalsCB, LogCallback1 oppositeCB, int * sum)
 
 int equals_func1 ()
 {
+    static int i = 0;
+    i++;
     printf("Equals\n");
+    printf("%i equal numbers\n", i);
     return 0;
 }
 int equals_func2 ()
@@ -42,6 +45,7 @@ void opposite_func1 (int * sum, int elem)
 void opposite_func2 (int * sum, int elem)
 {
     printf("First: %i, second: %i\n", elem, -elem);
+    *sum += elem;
 }
 
 int main(void)
