@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1459109823 source:c:\1\codeblocks\ii smstr\op2\threads\main.c
+	<stdio.h>
+	<stdlib.h>
+	"randomizer.h"
+	"positiveWriter.h"
+	"mutex.h"
+	"thread.h"
+	<windows.h>
+
+1459108595 source:c:\1\codeblocks\ii smstr\op2\threads\randomizer.c
+	"randomizer.h"
+	<stdio.h>
+	<stdlib.h>
+	"mutex.h"
+	"thread.h"
+	<time.h>
+
+1459110363 c:\1\codeblocks\ii smstr\op2\threads\randomizer.h
+	"mutex.h"
+	"thread.h"
+
+1459109256 c:\1\codeblocks\ii smstr\op2\threads\positivewriter.h
+	"randomizer.h"
+
+1459091001 c:\1\codeblocks\ii smstr\op2\threads\mutex.h
+
+1459091037 c:\1\codeblocks\ii smstr\op2\threads\thread.h
+
+1459110381 source:c:\1\codeblocks\ii smstr\op2\threads\positivewriter.c
+	<stdio.h>
+	<stdlib.h>
+	"positiveWriter.h"
+	"randomizer.h"
+	"mutex.h"
+	"thread.h"
+	<windows.h>
+
+1459096227 source:c:\1\codeblocks\ii smstr\op2\threads\libthread.c
+	<windows.h>
+	"thread.h"
+	"mutex.h"
+
