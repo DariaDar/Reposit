@@ -18,7 +18,7 @@
         "work" : {
             "profession" : "Compositor",
             "experience" : "30"
-
+        }
     },{
 
         "name" : "Ray",
@@ -29,5 +29,6 @@
         "work" : {
             "profession" : "Writer",
             "experience" : "73"
+        }
     }
 ]
