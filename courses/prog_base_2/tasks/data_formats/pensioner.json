@@ -1,0 +1,33 @@
+[
+    {
+        "name" : "Robert",
+        "surname" : "De Niro",
+        "birthdate" : "1943-08-17",
+        "pension" : "5550.85",
+        "grumpiness" : "5",
+        "work" : {
+            "profession" : "Actor",
+            "experience" : "52"
+        }
+    },{
+        "name" : "Ludovico",
+        "surname" : "Einaudi",
+        "birthdate" : "1955-11-23",
+        "pension" : "8783.75",
+        "grumpiness" : "8",
+        "work" : {
+            "profession" : "Compositor",
+            "experience" : "30"
+
+    },{
+
+        "name" : "Ray",
+        "surname" : "Bradbury",
+        "birthdate" : "1920-08-22",
+        "pension" : "6345.65",
+        "grumpiness" : "2",
+        "work" : {
+            "profession" : "Writer",
+            "experience" : "73"
+    }
+]

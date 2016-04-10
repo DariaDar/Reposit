@@ -1,0 +1,35 @@
+<pensioners>
+    <pensioner>
+        <name>Robert</name>
+        <surname>De Niro</surname>
+        <birthdate>1943-08-17</birthdate>
+        <pension>5550.85</pension>
+        <grumpiness>5</grumpiness>
+        <work profession="Actor">
+            <experience>52</experience>
+        </work>
+    </pensioner>
+
+    <pensioner>
+          <name>Ludovico</name>
+        <surname>Einaudi</surname>
+        <birthdate>1955-11-23</birthdate>
+        <pension>8783.75</pension>
+        <grumpiness>8</grumpiness>
+        <work profession="Compositor">
+            <experience>30</experience>
+        </work>
+    </pensioner>
+
+    <pensioner>
+           <name>Ray</name>
+        <surname>Bradbury</surname>
+        <birthdate>1920-08-22</birthdate>
+        <pension>6345.65</pension>
+        <grumpiness>2</grumpiness>
+        <work profession="Writer">
+            <experience>73</experience>
+        </work>
+    </pensioner>
+
+</pensioners>
