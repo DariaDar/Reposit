@@ -7,6 +7,7 @@
 #include <libxml/tree.h>
 
 
+void description(pensioner_t pPens, xmlNode * xP)
 {
     char * name;
     char * surname;
@@ -71,6 +72,7 @@ void parse(pensioner_t * pPens, char * file)
     {
         if(XML_ELEMENT_NODE == xP->type)
         {
+            description(pPens[i], xP);
             i++;
         }
     }
