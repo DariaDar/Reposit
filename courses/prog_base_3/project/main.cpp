@@ -1,6 +1,7 @@
 
- #include <SFML/Graphics.hpp> 
+ #include <SFML/Graphics.hpp>
  using namespace sf;
+
 
 class Player
  {
@@ -29,9 +30,11 @@ Player:: Player(String F, float X, float Y, float W, float H)
 	isMove = false;
 	isSelect = false;
 	image.loadFromFile("images/" + file);
+	image.createMaskFromColor(Color(255,255,255),0);
 	texture.loadFromImage(image);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(x,y,w,h));
+
 }
 
 
@@ -66,25 +69,23 @@ int main()
 						{
 							dX = pixelPos.x - p.sprite.getPosition().x;
 							dY = pixelPos.y - p.sprite.getPosition().y;
-							isMove = true;							
+							isMove = true;
 						}
 			if (event.type == Event::MouseButtonReleased)
 				if (event.key.code == Mouse::Left)
 					isMove = false;
 					p.sprite.setColor(Color::White);
 		}
-			
-		if (isMove) 
+
+		if (isMove)
 		{
 			p.sprite.setColor(Color::Green);
-			p.x = pixelPos.x-dX;
-			p.y = pixelPos.y-dY;
+			p.sprite.setPosition(pixelPos.x - dX,pixelPos.y - dY);
 		}
- 
+
 		window.clear();
 		window.draw(p.sprite);
 		window.display();
 	}
 	return 0;
 }
-
