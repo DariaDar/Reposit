@@ -5,6 +5,7 @@
  using namespace sf;
 
  //For the first time. Simple realization of basic functions; not the main file
+
 class Player
  {
 public:
@@ -34,6 +35,7 @@ public:
 	texture.loadFromImage(image);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(x,y,w,h));
+	sprite.setOrigin(w / 2, h / 2);
 
 }
 
@@ -127,6 +129,9 @@ int main()
 
 	bool isMove = false;
 	float dX = 0, dY = 0;
+	float tmpX = 0;
+	float tmpY = 0;
+	float distance = 0;
 
 	Clock clock;
 
@@ -151,6 +156,7 @@ int main()
 							dX = pixelPos.x - p.sprite.getPosition().x;
 							dY = pixelPos.y - p.sprite.getPosition().y;
 							isMove = true;
+							p.isSelect = true;
 						}
 
 			if (event.type == Event::MouseButtonReleased)
@@ -158,10 +164,33 @@ int main()
 					isMove = false;
 					p.sprite.setColor(Color::White);
 		}
+		if(p.isSelect)
+		{
+			if (event.type == Event::MouseButtonPressed)
+				if (event.key.code == Mouse::Right)
+				{
+					p.isMove = true;
+					p.isSelect = false;
+					p.sprite.setColor(Color::White);
+					tmpX = pixelPos.x;
+					tmpY = pixelPos.y;
+				}
+		}
+		if(p.isMove)
+		{
+			distance = sqrt(pow(tmpX - p.x, 2) - pow(tmpY - p.y, 2));
+			if(distance > 2)
+			{
+				p.x += 0.1 * time * (tmpX - p.x) / distance;
+				p.y += 0.1 * time * (tmpY - p.y) / distance;
+			}
+		}
+
 		if (isMove)
 		{
 			p.sprite.setColor(Color::Green);
-			p.sprite.setPosition(pixelPos.x - dX,pixelPos.y - dY);
+			p.x = pixelPos.x - dX;
+			p.y = pixelPos.y - dY;
 		}
 
 
