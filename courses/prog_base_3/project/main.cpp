@@ -43,6 +43,7 @@ public:
 
 		if(Keyboard::isKeyPressed(Keyboard::Left))
 		{
+			direction = 1; speed = 0.1;
 			currentFrame += 0.004 * time;
 			if(currentFrame > 3)
 				currentFrame -= 2;
@@ -52,12 +53,64 @@ public:
 		}
 		if(Keyboard::isKeyPressed(Keyboard::Right))
 		{
+			direction = 0; speed = 0.1;
 			currentFrame += 0.004 * time;
 			if(currentFrame > 3)
 				currentFrame -= 2;
 			sprite.setTextureRect(IntRect(290 * int(currentFrame), 490, 210, 200));
 			sprite.move(0.1 * time, 0);
 		}
+		if(Keyboard::isKeyPressed(Keyboard::Up))
+		{
+			direction = 3; speed = 0.1;
+			currentFrame += 0.004 * time;
+			if(currentFrame > 3)
+				currentFrame -= 2;
+			sprite.setTextureRect(IntRect(290 * int(currentFrame), 735, 150, 210));
+			sprite.move(0, -0.1 * time);
+		}
+
+		if(Keyboard::isKeyPressed(Keyboard::Down))
+		{
+			direction = 2; speed = 0.1;
+			currentFrame += 0.004 * time;
+			if(currentFrame > 3)
+				currentFrame -= 2;
+			sprite.setTextureRect(IntRect(290 * int(currentFrame), 20, 130, 230));
+			sprite.move(0, 0.1 * time);
+		}
+	}
+
+	void update(float time)
+	{
+		control(time);
+		switch(direction)
+		{
+		case 0: //right
+			dx = speed;
+			dy = 0;
+			break;
+		case 1: //left
+			dx = -speed;
+			dy = 0;
+			break;
+		case 2: //down
+			dx = 0;
+			dy = speed;
+			break;
+		case 3: // up
+			dx = 0;
+			dy = -speed;
+			break;
+		default:
+			break;
+		}
+
+		x += dx * time;
+		y += dy * time;
+
+		speed = 0;
+		sprite.setPosition(x, y);
 	}
 
  };
@@ -113,7 +166,7 @@ int main()
 
 
 
-		p.control(time); //for the first time
+		p.update(time); //for the firts time
 
 		window.clear();
 		window.draw(p.sprite);
