@@ -5,7 +5,7 @@
  void menu(RenderWindow &window)
  {
 	 Texture menuText1, menuText2, menuText3, menuBackground;
-	 menuBackground.loadFromFile("images/menu.jpg");
+	 menuBackground.loadFromFile("images/menu1.jpg");
 	 menuText2.loadFromFile("images/cat.jpg");
 	 Sprite menuLoad(menuText2);
 	 Sprite menuBg(menuBackground);
@@ -80,8 +80,11 @@
 	 window.setPosition(Vector2i(10,10));
 	 menu(window);
 
+	 Clock clock;
+
 	  while (window.isOpen())
     {
+		float time = 
         sf::Event event;
         while (window.pollEvent(event))
         {
