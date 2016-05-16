@@ -15,7 +15,7 @@ extern "C"
 {
 #endif
 
-#include "stack.h"
+#include <stack.h>
 
 int DLL_EXPORT check(stack_t * st, char * str);
 void DLL_EXPORT reaction(stack_t * st, char * str);

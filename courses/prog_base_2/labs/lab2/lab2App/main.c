@@ -4,7 +4,7 @@
 #include <time.h>
 #include <string.h>
 
-#include "stack.h"
+#include <stack.h>
 
 typedef int (*check_f)(stack_t * st, char * str);
 typedef void (*reaction_f)(stack_t * st, char * str);

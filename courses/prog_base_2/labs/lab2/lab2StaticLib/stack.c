@@ -35,8 +35,8 @@ void stack_push(stack_t * self, char * str)
         printf("Stack overflow.");
         return;
     }
-    strcpy(self->arr[self->top], str);
     self->top += 1;
+    strcpy(self->arr[self->top], str);
 }
 
 char * stack_pop(stack_t * self)
@@ -78,9 +78,9 @@ void stack_print(stack_t * self)
         printf("Empty stack.\n");
         return;
     }
-    for(int i = 0; i < self->top; i++)
+    for(int i = 1; i <= self->top; i++)
     {
-        printf("%i: %s\n", i + 1, self->arr[i]);
+        printf("%i: %s\n", i , self->arr[i]);
     }
     printf("\n---------\n\n");
 }

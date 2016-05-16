@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1462722988 source:c:\1\codeblocks\ii smstr\op2\lab2\lab2dll1\main.cpp
+	"main.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1463224476 c:\1\codeblocks\ii smstr\op2\lab2\lab2dll1\main.h
+	<windows.h>
+	<stack.h>
+
+1461592485 c:\1\codeblocks\ii smstr\op2\lab2\lab2dll1\stack.h
+
+1461592485 c:\1\codeblocks\ii smstr\op2\lab2\lab2staticlib\stack.h
+
