@@ -1,89 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "stack.h"
 #include "list.h"
-#include <time.h>
-#include "webpage.h"
-
-
 void user_tests();
 
-typedef struct client_s
+int randR(int minV, int maxV)
 {
-    char name[100];
-}client_t;
-
-void clientInfo(void * receiver, char * message)
-{
-    client_t * client = (client_t *)receiver;
-    printf("Client %s, message: %s\n", client->name, message);
-}
-
-int rangedRand(int minVal, int maxVal)
-{
-    int val = rand()%(maxVal - 1) + minVal;
+    int val;
+    val = (int)((double)rand() / (RAND_MAX + 1) * (maxV - minV) + minV);
     return val;
 }
 
-void chooseAction(stack_t * st, int val)
-{
-    if(val >= 0)
-        stack_push(st, val);
-    else
-        stack_pop(st);
-}
 
 int main()
 {
     user_tests();
-    time_t t;
-    srand(time(&t));
-
-    webpage_t * wp1 = webpage_new();
-    webpage_t * wp2 = webpage_new();
 
     stack_t * st1 = stack_new(1);
     stack_t * st2 = stack_new(2);
 
-    stack_setSt(st1, st2);
-    stack_setSt(st2, st1);
+    stack_subsOwerflow(st1, st2, stack_onEvent);
+    stack_subsEmpty(st1, st2, stack_onEvent);
 
-    stack_setWebpage(st1, wp1);
-    stack_setWebpage(st2, wp2);
+    stack_subsOwerflow(st2, st1, stack_onEvent);
+    stack_subsEmpty(st2, st1, stack_onEvent);
 
-    client_t clients[4] = {{"Taras"}, {"Olya"}, {"Ira"}, {"Andriy"}};
+    user_t users1[4] = {{"Taras"}, {"Olya"}, {"Ira"}, {"Andriy"}};
+    user_t users2[3] = {{"Jess"}, {"John"}, {"Rob"}};
     for(int i = 0; i < 4; i++)
     {
-        webpage_subscribeNotification(wp1, &clients[i], clientInfo);
-        webpage_subscribeNotification(wp2, &clients[i], clientInfo);
+        stack_AddSubsDual(st1, &users1[i], stack_onEvent);
+    }
+    for(int i = 0; i < 3; i++)
+    {
+        stack_AddSubsDual(st2, &users2[i], stack_onEvent);
     }
 
     for(int i = 0; i < 5; i++)
-	{
-		stack_push(st1, i+1);
-		stack_push(st2, 0 - (i+1));
-	}
+    {
+        stack_push(st1, i);
+        stack_push(st2, i + 1);
+    }
 
     while(1)
     {
-        int randSt = rangedRand(1, 3);
-        int randNum = rangedRand(-100, 100);
-        switch(randSt)
+        int stNum = randR(1, 3);
+        int val = randR(-100, 100);
+        switch(stNum)
         {
         case 1:
-            chooseAction(st1, randNum);
+            stack_insert(st1, val);
             break;
         case 2:
-            chooseAction(st2, randNum);
-            break;
-        default:
+            stack_insert(st2, val);
             break;
         }
         sleep(1);
     }
+
     stack_delete(st1);
     stack_delete(st2);
-    webpage_free(wp1);
-    webpage_free(wp2);
     return 0;
 }

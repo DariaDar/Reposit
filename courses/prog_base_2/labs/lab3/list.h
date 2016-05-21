@@ -14,8 +14,6 @@ void list_free(list_t * lt);
 void list_push_back(list_t * lt, event_t * ptr);
 event_t * list_pop_back(list_t * lt);
 int list_getCount(list_t * lt);
-event_t * event_getElem(list_t * lt, int index);
-
-
+event_t * list_getElem(list_t * lt, int index);
 
 #endif // LIST_H

@@ -1,133 +1,203 @@
-#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack.h"
 #include "list.h"
+
+#define STACK_MAX_SIZE 10
 
 struct stack_s
 {
     int num;
-    int * arr;
     int top;
-    cb_push_val pushToObj;
-    cb_pop_val popFromObj;
-    stack_t * obj;
-    webpage_t * wb;
+    int arr[STACK_MAX_SIZE];
+    list_t * dual;
+    void * overflow_sub;
+    cb_fn overflow_cb;
+    void * empty_sub;
+    cb_fn empty_cb;
 };
 
-//Push in another stack
-int push_val(stack_t * st, int val)
-{
-    if(st->top < MAX_STACK_SIZE)
-    {
-        stack_push(st, val);
-        printf("-----Push  %d to stack number %d------\n", val, st->num);
-        return 1;
-    }
-    return 0;
-}
 
-//Pop from another stack
-int pop_val(stack_t * st, int *val)
-{
-    if(stack_peek(st) >= 0)
-    {
-        *val = stack_pop(st);
-        printf("-----Pop  %d from stack number %d------\n", *val, st->num);
-        return 1;
-    }
-    return 0;
-}
-
-//Pointer to the second object
-void stack_setSt(stack_t * self, stack_t * st)
-{
-    self->obj = st;
-}
-
-stack_t * stack_new(int number)
+stack_t * stack_new(int num)
 {
     stack_t * st;
     st = calloc(1, sizeof(struct stack_s));
-    st->num = number;
-    st->arr = malloc(MAX_STACK_SIZE * sizeof(int));
+    st->num = num;
     st->top = -1;
-    st->pushToObj = push_val;
-    st->popFromObj = pop_val;
+    st->dual = list_new();
+    st->overflow_sub = NULL;
+    st->overflow_cb = NULL;
+    st->empty_sub = NULL;
+    st->empty_cb = NULL;
     return st;
 }
 
 void stack_delete(stack_t * st)
 {
-    free(st->arr);
+    list_free(st->dual);
     free(st);
 }
 
-void stack_push(stack_t * st, int value)
+void stack_push(stack_t * st, int val)
 {
-    char message[80];
-    if(st->top < MAX_STACK_SIZE)
+    if(st->top < STACK_MAX_SIZE - 1)
     {
-        st->top += 1;
-        st->arr[st->top] = value;
-        printf("Pushed value on Stack %i\n", st->num);
+        st->top++;
+        st->arr[st->top] = val;
+        printf("Value %i was PUSHED on stack %i\n", val, st->num);
+        return;
     }
     else
+    {
+        if(st->overflow_cb != NULL)
         {
-            int tran = st->pushToObj(st->obj, value);
-            if(tran == 0)
-            {
-               sprintf(message, "Stack %i is full!\n", st->num);
-               webpage_sendMessage(st->wb, message);
-            }
+            st->overflow_cb(st->overflow_sub, st, OVER, val);
         }
+    }
 }
 
 int stack_pop(stack_t * st)
 {
-    char message[80];
-    int val = 0;
     if(st->top >= 0)
     {
-        val = stack_peek(st);
+        int val = st->arr[st->top];
+        st->arr[st->top] = 0;
         st->top--;
-        printf("Popped value from Stack %i.\n", st->num);
+        printf("Value %i was POPPED from Stack %i\n", val, st->num);
         return val;
     }
     else
     {
-        val = 0;
-        int tran = st->popFromObj(st->obj, &val);
-        if(tran == 0)
+        if(st->empty_cb != NULL)
         {
-            sprintf(message, "Stack %i is empty!", st->num);
-            webpage_sendMessage(st->wb, message);
+            st->empty_cb(st->empty_sub, st, EMPTY, 0);
+        }
+    }
+    return 0;
+}
+
+void stack_insert(stack_t * st, int val)
+{
+    if(val >= 0)
+        stack_push(st, val);
+    else
+        stack_pop(st);
+}
+
+void stack_subsOwerflow(stack_t * st, void * sub, cb_fn cb)
+{
+    st->overflow_sub = sub;
+    st->overflow_cb = cb;
+}
+
+void stack_subsEmpty(stack_t * st, void * sub, cb_fn cb)
+{
+    st->empty_sub = sub;
+    st->empty_cb = cb;
+}
+
+void stack_AddSubsDual(stack_t * st, void * sub, cb_fn cb)
+{
+    event_t * ev = (event_t*)calloc(1, sizeof(event_t));
+    ev->receiver = sub;
+    ev->callback = cb;
+    list_push_back(st->dual, ev);
+}
+
+void stack_onEvent(void * sub, stack_t * sender, enum event_type type, int last_val)
+{
+    int count;
+    char message[80];
+    stack_t * stmp;
+
+    stmp = (stack_t *)sub;
+    if(type == OVER)
+    {
+        if(stmp->top < STACK_MAX_SIZE - 1)
+        {
+            sprintf(message, "Event OVER: Stack %i is FULL.\n", sender->num);
+            printf(message);
+            stack_push(stmp, last_val);
         }
         else
         {
-            stack_push(st, val);
+            //Sub stack1
+            count = list_getCount(stmp->dual);
+            for(int i = 0; i < count; i++)
+            {
+                event_t * ev = list_getElem(stmp->dual, i);
+                if(ev->callback != NULL)
+                {
+                    cb_fn fn = (cb_fn)ev->callback;
+
+                    sprintf(message, "%s", (char *)ev->receiver);
+					fn(ev->receiver, stmp, DUAL, 1);
+                }
+            }
+
+            //Sub stack 2
+            count = list_getCount(sender->dual);
+            for(int i = 0; i < count; i++)
+            {
+                event_t * ev = list_getElem(sender->dual, i);
+                if(ev->callback != NULL)
+                {
+                    cb_fn fn1 = (cb_fn)ev->callback;
+
+                    sprintf(message, "%s", (char *)ev->receiver);
+					fn1(ev->receiver, sender, DUAL, 1);
+                }
+            }
         }
     }
-    return val;
-}
 
-int stack_peek(stack_t * st)
-{
-    if(st->top == -1)
-        return -1;
-    return st->arr[st->top];
-}
+    if(type == EMPTY)
+    {
+        if(stmp->top >= STACK_MAX_SIZE)
+        {
+            sprintf(message, "Event EMPTY: Stack %i is EMPTY\n", sender->num);
+            printf(message);
+            stack_push(sender, stack_pop(stmp));
+        }
+        else
+        {
+            //Sub stack1
+            count = list_getCount(stmp->dual);
+            for(int i = 0; i < count; i++)
+            {
+                event_t * ev = list_getElem(stmp->dual, i);
+                if(ev->callback != NULL)
+                {
+                    cb_fn fn = (cb_fn)ev->callback;
 
-void stack_setWebpage(stack_t * st, webpage_t * wp)
-{
-    st->wb = wp;
-}
+                    sprintf(message, "%s", (char *)ev->receiver);
+					fn(ev->receiver, stmp, DUAL, 0);
+                }
+            }
 
-int stack_getCount(stack_t * st)
-{
-    return st->top;
-}
+            //Sub stack 2
+            count = list_getCount(sender->dual);
+            for(int i = 0; i < count; i++)
+            {
+                event_t * ev = list_getElem(sender->dual, i);
+                if(ev->callback != NULL)
+                {
+                    cb_fn fn1 = (cb_fn)ev->callback;
 
-int stack_getStackNum(stack_t * st)
-{
-    return st->num;
+                    sprintf(message, "%s", (char *)ev->receiver);
+					fn1(ev->receiver, sender, DUAL, 0);
+                }
+            }
+        }
+    }
+    if(type == DUAL)
+    {
+        user_t * user = (user_t *)sub;
+        if(last_val)
+            sprintf(message, "Event DUAL: User %s. Stack %i is FULL.\n", user->name, sender->num);
+        else
+            sprintf(message, "Event DUAL: User %s. Stack %i is EMPTY.\n", user->name, sender->num);
+        printf(message);
+    }
+
 }

@@ -1,22 +1,35 @@
 #ifndef STACK_H
 #define STACK_H
 
-#define MAX_STACK_SIZE 10
-#include "webpage.h"
+#include "list.h"
+
+enum event_type
+{
+    OVER,
+    EMPTY,
+    DUAL
+};
+
+typedef struct user_s
+{
+    char name[100];
+};
+
 typedef struct stack_s stack_t;
+typedef struct user_s user_t;
 
-typedef int (*cb_push_val)(stack_t * st, int ival);
-typedef int (*cb_pop_val)(stack_t * st, int *ival);
+typedef void (*cb_fn)(void * sub, stack_t * st, enum event_type type, int last_val);
 
-stack_t * stack_new();
+stack_t * stack_new(int num);
 void stack_delete(stack_t * st);
-
-void stack_push(stack_t * st, int value);
+void stack_push(stack_t * st, int val);
 int stack_pop(stack_t * st);
-int stack_peek(stack_t * st);
-int stack_getCount(stack_t * st);
-void stack_setWebpage(stack_t * st, webpage_t * wp);
-void stack_setSt(stack_t * self, stack_t * st1);
-int stack_getStackNum(stack_t * st);
+void stack_insert(stack_t * st, int val);
+
+
+void stack_subsOwerflow(stack_t * st, void * sub, cb_fn cb);
+void stack_subsEmpty(stack_t * st, void * sub, cb_fn cb);
+void stack_AddSubsDual(stack_t * st, void * sub, cb_fn cb);
+void stack_onEvent(void * sub, stack_t * sender, enum event_type type, int last_val);
 
 #endif // STACK_H
