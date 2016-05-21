@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1463818458 source:c:\1\codeblocks\ii smstr\tests\lib\list.c
+	<stdlib.h>
+	"list.h"
+
+1463819529 c:\1\codeblocks\ii smstr\tests\lib\list.h
+	<stdlib.h>
+
+1463821837 source:c:\1\codeblocks\ii smstr\tests\lib\main.c
+	"player.h"
+	"list.h"
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+
+1463821829 c:\1\codeblocks\ii smstr\tests\lib\player.h
+
