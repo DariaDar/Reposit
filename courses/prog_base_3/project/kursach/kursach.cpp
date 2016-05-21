@@ -1,9 +1,10 @@
 #include "stdafx.h"
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp> 
 #include <SFML/Audio.hpp>
 #include <math.h>
 #include <iostream>
 #include "menu.h"
+#include "map.h"
 #include "player.h"
 #include "object.h"
  using namespace sf;
@@ -67,6 +68,14 @@
 	 Player p("cat.png", 55, 25, 60, 120, 100, 445);
 	 Clock clock;
 
+	 //>>>>>>>>>>>>>>>>---Map---<<<<<<<<<<<<<<<<<<<<<<<
+	 Image map_image;
+	 map_image.loadFromFile("images/back.png");
+	 Texture map;
+	 map.loadFromImage(map_image);
+	 Sprite s_map;
+	 s_map.setTexture(map);
+
 	 //>>>>>>>>>>>>>>>>---Sounds----<<<<<<<<<<<<<<<<<<<
 	SoundBuffer buf1, buf2;
 	buf1.loadFromFile("music/meow1.ogg");
@@ -88,7 +97,7 @@
 
 	  while (window.isOpen())
     {
-
+		
 		float time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
 		time = time/500;
@@ -103,15 +112,34 @@
 			if (event.type == Event::MouseButtonPressed)
 					if (event.key.code == Mouse::Left)
 						meow(meow1, meow2, p, pos);
-			//-----------------------------------------------------------------------------
+			//-----------------------------------------------------------------------------	
         }
-
+		
+		
 
 		p.update(time);
 
 		window.clear();
+		//>>>>>>>--Draw map--<<<<<<<<<<
+		for(int i = 0; i < MAP_HEIGHT; i++)
+		{
+			for(int j = 0; j < MAP_WEIGHT; j++)
+			{
+				if(tileMap[i][j] == '0')
+					s_map.setTextureRect(IntRect(40, 0, 40, 40));
+				if(tileMap[i][j] == ' ')
+					s_map.setTextureRect(IntRect(0, 0, 40, 40));
+				if(tileMap[i][j] == 'f')
+					s_map.setTextureRect(IntRect(80, 0, 40, 40));
 
-		window.draw(level);
+				s_map.setPosition(i * 40, j * 40);
+				window.draw(s_map);
+			}
+		}
+
+		
+
+		/*window.draw(level);
 		window.draw(posters.sprite);
 		window.draw(bed.sprite);
 		window.draw(toys.sprite);
@@ -120,7 +148,7 @@
 		window.draw(mop.sprite);
 		window.draw(flower.sprite);
 		window.draw(ball.sprite);
-		window.draw(books.sprite);
+		window.draw(books.sprite);*/
 		window.draw(p.sprite);
 		window.display();
     }
