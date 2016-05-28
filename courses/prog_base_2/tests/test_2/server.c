@@ -4,6 +4,7 @@
 #include <string.h>
 #include "cJSON.h"
 #include "pensioner.h"
+#include "words.h"
 
 
 #include <stdio.h>
@@ -145,7 +146,6 @@ void server_dB(socket_t * client, db_t * db, list_t * lt)
 
 void server_file(socket_t * client, http_request_t * req)
 {
-    char buf[1000];
     list_t * list = list_new();
     if(strcmp(req->method, "GET") == 0)
     {
@@ -157,28 +157,33 @@ void server_file(socket_t * client, http_request_t * req)
             str = strtok(NULL,"/");
         }
 
+        char * word = list_get(list, 3);
         char * fileName = list_get(list, 2);
         int fileSt = file_exists(fileName);
         if(fileSt == 1)
         {
-            FILE * fp = fopen(fileName, "r");
-            if(fp == NULL)
-            {
-                printf("Error!");
-                return;
-            }
-            fseek(fp,0,SEEK_END);
-            long length = ftell(fp);
-            fseek(fp,0,SEEK_SET);
-            fread(buf, length, sizeof(char), fp);
-            fclose(fp);
+            text_t * text = text_new();
+            text_readFile(text, fileName);
+            text_onSentences(text);
+            int cntW = text_counting(text, word);
+
+            cJSON * Words = cJSON_CreateObject();
+            cJSON_AddItemToObject(Words, "FileName", cJSON_CreateString(fileName));
+            cJSON_AddItemToObject(Words, "CountWord", cJSON_CreateNumber(cntW));
+            cJSON_AddItemToObject(Words, "experience", cJSON_CreateString(word));
+            char * Jtext = cJSON_Print(Words);
+            server_sent(client, Jtext);
+            free(Jtext);
 
         }
-
-
-
+        else
+        {
+            printf("Error! Wrong file");
+            return;
+        }
 
 
     }
     list_free(list);
 }
+

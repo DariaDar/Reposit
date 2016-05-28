@@ -20,6 +20,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-llibxml2" />
+					<Add option="-lws2_32" />
 					<Add library="C:\1\CODEBLOCKS\II smstr\TESTS\test2\kr2\libsqlite3.a" />
 					<Add directory="../../../../../../libs/libxml2-2.7.8.win32/lib" />
 				</Linker>
@@ -40,9 +41,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="filefunc.c">
+		<Unit filename="cJSON.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="cJSON.h" />
+		<Unit filename="db_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="db_manager.h" />
+		<Unit filename="http.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="http.h" />
 		<Unit filename="list.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -50,9 +60,18 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pensioner.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pensioner.h" />
 		<Unit filename="server.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="server.h" />
+		<Unit filename="socket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="socket.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

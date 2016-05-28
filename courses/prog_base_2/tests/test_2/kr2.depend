@@ -175,13 +175,14 @@
 	"list.h"
 	"http.h"
 
-1464440422 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\server.c
+1464442372 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\server.c
 	"server.h"
 	"socket.h"
 	<stdio.h>
 	<string.h>
 	"cJSON.h"
 	"pensioner.h"
+	"words.h"
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -220,4 +221,13 @@
 	"http.h"
 
 1464432324 c:\1\codeblocks\ii smstr\tests\test2\kr2\http.h
+
+1464442005 c:\1\codeblocks\ii smstr\tests\test2\kr2\words.h
+
+1464442021 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\words.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"words.h"
+	"list.h"
 
