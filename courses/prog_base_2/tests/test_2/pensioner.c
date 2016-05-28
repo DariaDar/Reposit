@@ -20,3 +20,29 @@ void printList_pensioner(pensioner_t* arr, int len)
         print_pensioner(&arr[i]);
     }
 }
+
+char * pensioner_getName(pensioner_t * ps)
+{
+    return ps->name;
+}
+char *  pensioner_getSurname(pensioner_t * ps)
+{
+    return ps->surname;
+}
+int pensioner_getAge(pensioner_t * ps)
+{
+    return ps->year;
+}
+int pensioner_getExperience(pensioner_t * ps)
+{
+    return ps->experience;
+}
+char * pensioner_getYear(pensioner_t * ps)
+{
+    return ps->birthday;
+}
+double pensioner_getPension(pensioner_t * ps)
+{
+    return ps->pension;
+}
+

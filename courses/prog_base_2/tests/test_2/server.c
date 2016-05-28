@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "cJSON.h"
+#include "pensioner.h"
 
 
 void server_sent(socket_t * clientSocket, char * info)
@@ -16,7 +17,7 @@ void server_sent(socket_t * clientSocket, char * info)
 }
 
 
-void server_dB(db_t * db, list_t * lt)
+void server_dB(socket_t * client, db_t * db, list_t * lt)
 {
     int cntPens = db_countPensioner(db);
     for(int i = 0; i < cntPens; i++)
@@ -30,16 +31,14 @@ void server_dB(db_t * db, list_t * lt)
     {
         cJSON * pens = cJSON_CreateObject();
         pensioner_t * ps = list_get(lt, i);
-        cJSON_AddItemToObject(pens, "name", cJSON_CreateString(ps->name));
-        cJSON_AddItemToObject(pens, "surname", cJSON_CreateString(ps->surname));
-        cJSON_AddItemToObject(pens, "year", cJSON_CreateNumber(ps->year));
-        cJSON_AddItemToObject(pens, "experience", cJSON_CreateNumber(ps->experience));
-        cJSON_AddItemToObject(pens, "pension", cJSON_CreateNumber(ps->experience));
-        cJSON_AddItemToObject(pens, "surname", cJSON_CreateString(ps->birthday));
+        cJSON_AddItemToObject(pens, "name", cJSON_CreateString(pensioner_getName(ps)));
+        cJSON_AddItemToObject(pens, "surname", cJSON_CreateString(pensioner_getSurname(ps)));
+        cJSON_AddItemToObject(pens, "year", cJSON_CreateNumber(pensioner_getAge(ps)));
+        cJSON_AddItemToObject(pens, "experience", cJSON_CreateNumber(pensioner_getExperience(ps)));
+        cJSON_AddItemToObject(pens, "pension", cJSON_CreateNumber(pensioner_getPension(ps)));
+        cJSON_AddItemToObject(pens, "surname", cJSON_CreateString(pensioner_getYear(ps)));
         cJSON_AddItemToArray(arr, pens);
     }
-    char Jtext[cntPens] = cJSON_Print(arr);
-
-
-
+    char * Jtext = cJSON_Print(arr);
+    server_sent(client, Jtext);
 }

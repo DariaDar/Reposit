@@ -15,5 +15,11 @@ typedef struct pensioner_s
 
 void print_pensioner(pensioner_t * ps);
 void printList_pensioner(pensioner_t* arr, int len);
+char * pensioner_getName(pensioner_t * ps);
+char *  pensioner_getSurname(pensioner_t * ps);
+int pensioner_getAge(pensioner_t * ps);
+int pensioner_getExperience(pensioner_t * ps);
+char * pensioner_getYear(pensioner_t * ps);
+double pensioner_getPension(pensioner_t * ps);
 
 #endif

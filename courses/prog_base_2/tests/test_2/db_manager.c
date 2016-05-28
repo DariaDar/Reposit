@@ -135,6 +135,7 @@ void db_deletePensioner(db_t * self, int id)
 	printf("Delete by ID = %d OK\n", id);
 }
 
+
 int db_countPensioner(db_t * self)
 {
     sqlite3_stmt * stmt = NULL;
@@ -149,6 +150,20 @@ int db_countPensioner(db_t * self)
     sqlite3_finalize(stmt);
     return count;
 }
+/*int db_countPensioner(db_t * self)
+{
+    sqlite3_stmt * stmt = NULL;
+    sqlite3_prepare_v2(self->db, "SELECT COUNT(*) FROM Pensioners;", -1, &stmt, 0);
+    int rc = sqlite3_step(stmt);
+    if (SQLITE_ERROR == rc)
+	{
+        printf("can't select count\n");
+        exit(1);
+    }
+    int count = sqlite3_column_int(stmt, 0);
+    sqlite3_finalize(stmt);
+    return count;
+}*/
 
 static void _fillPensioner(sqlite3_stmt * stmt, pensioner_t * ps)
 {
