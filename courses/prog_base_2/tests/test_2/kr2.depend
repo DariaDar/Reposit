@@ -1,0 +1,223 @@
+# depslib dependency file v1.0
+1464440352 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"cJSON.h"
+	<sqlite3.h>
+	"socket.h"
+	"server.h"
+	"db_manager.h"
+	"list.h"
+	"http.h"
+
+1288879124 c:\libs\libxml2-2.7.8.win32\include\libxml\parser.h
+	<stdarg.h>
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+	<libxml/dict.h>
+	<libxml/hash.h>
+	<libxml/valid.h>
+	<libxml/entities.h>
+	<libxml/xmlerror.h>
+	<libxml/xmlstring.h>
+	<libxml/encoding.h>
+	<libxml/xmlIO.h>
+	<libxml/globals.h>
+
+1308508838 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlversion.h
+	<libxml/xmlexports.h>
+	<ansidecl.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlexports.h
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\tree.h
+	<stdio.h>
+	<libxml/xmlversion.h>
+	<libxml/xmlstring.h>
+	<libxml/xmlregexp.h>
+	<libxml/xmlmemory.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlstring.h
+	<stdarg.h>
+	<libxml/xmlversion.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlregexp.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+	<libxml/dict.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\dict.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlmemory.h
+	<stdio.h>
+	<libxml/xmlversion.h>
+	<libxml/threads.h>
+	<libxml/globals.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\threads.h
+	<libxml/xmlversion.h>
+	<libxml/globals.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\globals.h
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/xmlerror.h>
+	<libxml/SAX.h>
+	<libxml/SAX2.h>
+	<libxml/xmlmemory.h>
+	<libxml/threads.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlerror.h
+	<libxml/parser.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\sax.h
+	<stdio.h>
+	<stdlib.h>
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/xlink.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\xlink.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\sax2.h
+	<stdio.h>
+	<stdlib.h>
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/xlink.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\hash.h
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/dict.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\valid.h
+	<libxml/xmlversion.h>
+	<libxml/xmlerror.h>
+	<libxml/tree.h>
+	<libxml/list.h>
+	<libxml/xmlautomata.h>
+	<libxml/xmlregexp.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\list.h
+	<libxml/xmlversion.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlautomata.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+	<libxml/xmlregexp.h>
+
+1286861132 c:\libs\libxml2-2.7.8.win32\include\libxml\entities.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+
+1288882432 c:\libs\libxml2-2.7.8.win32\include\libxml\encoding.h
+	<libxml/xmlversion.h>
+	<iconv.h>
+	<unicode/ucnv.h>
+	<libxml/tree.h>
+
+1146767014 c:\libs\iconv-1.9.2.win32\include\iconv.h
+	"iconv.h"
+	<stddef.h>
+	<errno.h>
+
+1253802720 c:\libs\libxml2-2.7.8.win32\include\libxml\xmlio.h
+	<stdio.h>
+	<libxml/xmlversion.h>
+	<libxml/globals.h>
+	<libxml/tree.h>
+	<libxml/parser.h>
+	<libxml/encoding.h>
+
+1458401080 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1458401080 c:\1\codeblocks\ii smstr\tests\test2\kr2\cjson.h
+
+1464437708 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\filefunc.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<dirent.h>
+	<windows.h>
+
+1464372834 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\list.c
+	<stdlib.h>
+	"list.h"
+
+1464372854 c:\1\codeblocks\ii smstr\tests\test2\kr2\list.h
+	<stdlib.h>
+
+1461020190 c:\1\codeblocks\ii smstr\tests\test2\kr2\sqlite3.h
+	<stdarg.h>
+
+1464434605 c:\1\codeblocks\ii smstr\tests\test2\kr2\socket.h
+
+1464440365 c:\1\codeblocks\ii smstr\tests\test2\kr2\server.h
+	"socket.h"
+	"db_manager.h"
+	"list.h"
+	"http.h"
+
+1464440422 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\server.c
+	"server.h"
+	"socket.h"
+	<stdio.h>
+	<string.h>
+	"cJSON.h"
+	"pensioner.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<dirent.h>
+	<windows.h>
+
+1464431040 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1464436029 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\db_manager.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"db_manager.h"
+
+1464428547 c:\1\codeblocks\ii smstr\tests\test2\kr2\db_manager.h
+	"sqlite3.h"
+	"pensioner.h"
+
+1464436839 c:\1\codeblocks\ii smstr\tests\test2\kr2\pensioner.h
+
+1464436831 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\pensioner.c
+	<stdlib.h>
+	<stdio.h>
+	"pensioner.h"
+
+1464432663 source:c:\1\codeblocks\ii smstr\tests\test2\kr2\http.c
+	<stddef.h>
+	<string.h>
+	<stdlib.h>
+	<stdio.h>
+	"http.h"
+
+1464432324 c:\1\codeblocks\ii smstr\tests\test2\kr2\http.h
+

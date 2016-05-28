@@ -64,10 +64,11 @@ int main(void) {
             {
                 server_dB(clientSocket, db,listPens);
             }
-            /*if(strcmp(req.uri, "/files") == 0)
-            {
 
-            }*/
+            if(strncmp(req.uri, "/files/", 7) == 0)
+            {
+                server_file(clientSocket, &req);
+            }
 
         }
 
