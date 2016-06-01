@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Furniture.h"
-#include "level.h"
+#include "LevelCl.h"
 
 	class Player: public Furniture
 	{

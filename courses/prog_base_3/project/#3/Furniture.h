@@ -2,7 +2,7 @@
 #define FURNITURE_H
 
 #include <SFML/Graphics.hpp>
-#include "level.h"
+#include "Object.h"
 using namespace sf;
 
 class Furniture

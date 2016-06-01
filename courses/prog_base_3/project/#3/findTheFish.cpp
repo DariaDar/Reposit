@@ -7,7 +7,10 @@
 #include "Player.h"
 #include "Furniture.h"
 #include "menu.h"
-
+#include "LevelCl.h"
+/*#include <string>
+#include <vector>
+#include <map>*/
 #include <list>
 
 void meow(Sound & meow1, Sound & meow2, Player p, Vector2i pos)
