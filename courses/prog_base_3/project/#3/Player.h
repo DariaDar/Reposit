@@ -10,7 +10,7 @@
 		int direction;
 		bool isMove, isSelect;
 
-		Player(String F, float X, float Y, float W, float H, float pX, float pY, Level &lev);
+		Player(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY);
 		~Player();
 		void control(float time);
 		void Update(float time);

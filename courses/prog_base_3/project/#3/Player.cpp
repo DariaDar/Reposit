@@ -5,7 +5,7 @@
 
 
 
-	Player:: Player(String F, float X, float Y, float W, float H, float pX, float pY, Level &lev): Furniture(F, X,  Y, W,  H,  pX, pY)
+	Player:: Player(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY): Furniture(F, X,  Y, W,  H,  pX, pY)
 {
 	obj = lev.GetAllObjects();
 	dx = 0;
@@ -70,21 +70,21 @@
 		  {
 			  if (obj[i].name == "bound" || obj[i].name == "bed" || obj[i].name == "cabinet")
 			  {
-				 if (Dy>0)
+				 if (Dy > 0)
 				 { 
 					 y = obj[i].rect.top - h;  
 					 dy = 0; 
 				 }
-				 if (Dy<0)
+				 if (Dy < 0)
 				 { 
 					 y = obj[i].rect.top + obj[i].rect.height;   
 					 dy = 0; 
 				 }
-				 if (Dx>0)
+				 if (Dx > 0)
 				 { 
 					 x = obj[i].rect.left - w; 
 				 }
-				 if (Dx<0)
+				 if (Dx < 0)
 				 {
 					 x = obj[i].rect.left + obj[i].rect.width;
 				 }
@@ -123,5 +123,6 @@
 
 		speed = 0;
 		sprite.setPosition(x, y);
+		checkCollisionWithMap(dx, dy);
 	}
 	 

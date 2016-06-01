@@ -39,6 +39,10 @@ int main()
 	 Level lvl;
 	 lvl.LoadFromFile("map.tmx");
 
+	 //>>>>>>>>>>>>>>>>>-----SET------<<<<<<<<<<<<<<<<
+	 //Object bed1 = lvl.GetObject("bed");
+	// Furniture bed("tayles1.png", 420, 80, 280, 310, 250, 440);
+	// Furniture bed("tayles1.png", bed1.rect.left, bed1.rect.top, 280, 310, 250, 440);
 	//>>>>>>>>>>>>>>>>---Load basic image for level1----<<<<<<<<<<<<<<<<<
 	Texture texture;
 	texture.loadFromFile("images/level1empty.jpg");
@@ -52,7 +56,9 @@ int main()
 	 mainSong.setVolume(75);
 
 	 //>>>>>>>>>>>>>>>>---Create a cat---<<<<<<<<<<<<<<<<<<<
-	 Player p("cat.png", 55, 25, 60, 120, 100, 445, lvl);
+	 Object player = lvl.GetObject("cat");
+	 //Player p("cat.png", lvl, 55, 25, 60, 120, 100, 445);
+	 Player p("cat.png", lvl, player.rect.left, player.rect.top, 60, 120, 100, 445);
 	 Clock clock;
 
 	 //>>>>>>>>>>>>>>>>---Map---<<<<<<<<<<<<<<<<<<<<<<<
@@ -107,7 +113,7 @@ int main()
 		p.Update(time);
 
 		window.clear();
-
+		lvl.Draw(window);
 		window.draw(level);
 		window.draw(posters.sprite);
 		window.draw(bed.sprite);
