@@ -16,7 +16,7 @@
 		void control(float time);
 		void Update(float time);
 		void checkCollisionWithMap(float Dx, float Dy);
-		void clickedThings(RenderWindow &window);
+		void clickedThings(RenderWindow &window, Furniture light);
 };
 
 

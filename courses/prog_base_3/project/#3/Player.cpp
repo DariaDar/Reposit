@@ -69,6 +69,14 @@
 		for (int i = 0; i < obj.size(); i++)
 		  if (getRect().intersects(obj[i].rect))
 		  {
+			  if(room == 2 && obj[i].name == "shadows")
+			  {
+				  obj[i].name = "none";
+			  }
+			  else if((room == 1 || room == 0) && obj[i].name == "none")
+			  {
+				  obj[i].name = "shadows";
+			  }
 			  if(obj[i].name == "newRoom")
 			  {
 				  room = 1;
@@ -97,19 +105,21 @@
 		   }
 	}
 
-	void Player:: clickedThings(RenderWindow &window)
+	void Player:: clickedThings(RenderWindow &window, Furniture light)
 	{
 		static int cnt = 0;
 		Vector2i pos = Mouse::getPosition(window);
-		if(obj[16].sprite.getGlobalBounds().contains(pos.x, pos.y))
+		if(light.sprite.getGlobalBounds().contains(pos.x, pos.y))
 		{
 			if(cnt % 2 == 0)
 			{
 				room = 2; cnt++;
+				printf("cnt++ %i", cnt);
 			}
 			else
 			{
-				room == 1; cnt--;
+				room = 1; cnt--;
+				printf("cnt-- %i", cnt);
 			}
 		}
 	}

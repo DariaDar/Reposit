@@ -48,7 +48,7 @@ int main()
 	Sprite level(texture);
 
 	Texture texture2; 
-	texture2.loadFromFile("images/level1shad.jpg");
+	texture2.loadFromFile("images/levelShad.png");
 	Sprite level2(texture2);
 
 	Texture texture3;
@@ -63,8 +63,8 @@ int main()
 
 	 //>>>>>>>>>>>>>>>>---Create a cat---<<<<<<<<<<<<<<<<<<<
 	 Object player = lvl.GetObject("cat");
-	 //Player p("cat.png", lvl, 55, 25, 60, 120, 100, 445);
-	 Player cat("cat.png", lvl, player.rect.left, player.rect.top, 60, 120, 100, 445);
+	 //Player cat("cat.png", lvl, 55, 25, 60, 120, 100, 445);
+	 Player cat("cat.png", lvl, player.rect.left, player.rect.top, 60, 120, 55, 25);
 	 Clock clock;
 
 	 //>>>>>>>>>>>>>>>>---Sounds----<<<<<<<<<<<<<<<<<<<
@@ -86,6 +86,12 @@ int main()
 	 Furniture ball("tayles1.png", 905, 615, 40, 55, 357, 190);
 	 Furniture books("tayles1.png", 860, 735, 125, 80, 290, 187);
 
+	 Furniture light("tayles2.png", 20, 20, 35, 70, 800, 430);
+	 Furniture bath("tayles2.png", 80, 50, 320, 380, 1010, 330);
+	 Furniture carpet("tayles2.png", 100, 500, 100, 140, 870, 530);
+	 Furniture mirror("tayles2.png", 90, 700, 110, 290, 1200, 300);
+	 Furniture sink("tayles2.png", 290, 440, 150, 240, 1190, 450);
+
 	  while (window.isOpen())
     {
 		
@@ -104,7 +110,7 @@ int main()
 					if (event.key.code == Mouse::Left)
 					{
 						meow(meow1, meow2, cat, pos);
-						cat.clickedThings(window);
+						cat.clickedThings(window, light);
 					}
 
 			//-----------------------------------------------------------------------------	
@@ -132,6 +138,17 @@ int main()
 		window.draw(flower.sprite);
 		window.draw(ball.sprite);
 		window.draw(books.sprite);
+
+		if(cat.room == 1 || cat.room == 2){
+			window.draw(light.sprite);
+			window.draw(carpet.sprite);
+		}
+		if(cat.room == 2){
+			window.draw(bath.sprite);
+			window.draw(mirror.sprite);
+			window.draw(sink.sprite);
+		}
+
 		window.draw(cat.sprite);
 		window.display();
     }
