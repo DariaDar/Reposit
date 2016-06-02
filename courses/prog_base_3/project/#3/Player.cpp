@@ -13,6 +13,7 @@
 	speed = 0;
 	isMove = false;
 	isSelect = false;
+	room = 0;
 }
 
 	Player:: ~Player()
@@ -68,7 +69,11 @@
 		for (int i = 0; i < obj.size(); i++)
 		  if (getRect().intersects(obj[i].rect))
 		  {
-			  if (obj[i].name == "bound" || obj[i].name == "bed" || obj[i].name == "cabinet")
+			  if(obj[i].name == "newRoom")
+			  {
+				  room = 1;
+			  }
+			  if (obj[i].name == "bound" || obj[i].name == "bed" || obj[i].name == "cabinet" || obj[i].name == "shadows")
 			  {
 				 if (Dy > 0)
 				 { 
@@ -90,6 +95,23 @@
 				 }
 			  }
 		   }
+	}
+
+	void Player:: clickedThings(RenderWindow &window)
+	{
+		static int cnt = 0;
+		Vector2i pos = Mouse::getPosition(window);
+		if(obj[16].sprite.getGlobalBounds().contains(pos.x, pos.y))
+		{
+			if(cnt % 2 == 0)
+			{
+				room = 2; cnt++;
+			}
+			else
+			{
+				room == 1; cnt--;
+			}
+		}
 	}
 
 

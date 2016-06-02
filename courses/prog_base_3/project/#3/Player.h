@@ -9,12 +9,14 @@
 		float dx, dy, speed;
 		int direction;
 		bool isMove, isSelect;
+		int room;
 
 		Player(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY);
 		~Player();
 		void control(float time);
 		void Update(float time);
 		void checkCollisionWithMap(float Dx, float Dy);
+		void clickedThings(RenderWindow &window);
 };
 
 

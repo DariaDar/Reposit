@@ -8,9 +8,9 @@
 #include "Furniture.h"
 #include "menu.h"
 #include "LevelCl.h"
-/*#include <string>
+#include <string>
 #include <vector>
-#include <map>*/
+#include <map>
 #include <list>
 
 void meow(Sound & meow1, Sound & meow2, Player p, Vector2i pos)
@@ -30,10 +30,9 @@ void meow(Sound & meow1, Sound & meow2, Player p, Vector2i pos)
 
 int main()
  {
-	 RenderWindow window(VideoMode(1300,702),"Find the fish", Style::Default);
+	 RenderWindow window(VideoMode(1300,702),"Find the fish");
 	 window.setPosition(Vector2i(10,10));
-	 menu(window);
-	 int cntMeow = 0;
+	 //menu(window);
 
 	 //>>>>>>>>>>>>>>>---Level---<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	 Level lvl;
@@ -48,6 +47,13 @@ int main()
 	texture.loadFromFile("images/level1empty.jpg");
 	Sprite level(texture);
 
+	Texture texture2; 
+	texture2.loadFromFile("images/level1shad.jpg");
+	Sprite level2(texture2);
+
+	Texture texture3;
+	texture3.loadFromFile("images/level12.png");
+	Sprite level3(texture3);
 	//>>>>>>>>>>>>>>>>---Music---<<<<<<<<<<<<<<<<<<<<<<<<<<
 	 Music mainSong;
 	 mainSong.openFromFile("music/level1.ogg");
@@ -58,16 +64,8 @@ int main()
 	 //>>>>>>>>>>>>>>>>---Create a cat---<<<<<<<<<<<<<<<<<<<
 	 Object player = lvl.GetObject("cat");
 	 //Player p("cat.png", lvl, 55, 25, 60, 120, 100, 445);
-	 Player p("cat.png", lvl, player.rect.left, player.rect.top, 60, 120, 100, 445);
+	 Player cat("cat.png", lvl, player.rect.left, player.rect.top, 60, 120, 100, 445);
 	 Clock clock;
-
-	 //>>>>>>>>>>>>>>>>---Map---<<<<<<<<<<<<<<<<<<<<<<<
-	 Image map_image;
-	 map_image.loadFromFile("images/back.png");
-	 Texture map;
-	 map.loadFromImage(map_image);
-	 Sprite s_map;
-	 s_map.setTexture(map);
 
 	 //>>>>>>>>>>>>>>>>---Sounds----<<<<<<<<<<<<<<<<<<<
 	SoundBuffer buf1, buf2;
@@ -104,17 +102,27 @@ int main()
 			//>>>>>----Meow----<<<<<<
 			if (event.type == Event::MouseButtonPressed)
 					if (event.key.code == Mouse::Left)
-						meow(meow1, meow2, p, pos);
+					{
+						meow(meow1, meow2, cat, pos);
+						cat.clickedThings(window);
+					}
+
 			//-----------------------------------------------------------------------------	
         }
 		
 		
 
-		p.Update(time);
+		cat.Update(time);
 
-		window.clear();
+		window.clear(Color::Black);
 		lvl.Draw(window);
-		window.draw(level);
+		if(cat.room == 0)
+			window.draw(level);
+		if(cat.room == 1)
+			window.draw(level2); 
+		if(cat.room == 2)
+			window.draw(level3);
+			
 		window.draw(posters.sprite);
 		window.draw(bed.sprite);
 		window.draw(toys.sprite);
@@ -124,7 +132,7 @@ int main()
 		window.draw(flower.sprite);
 		window.draw(ball.sprite);
 		window.draw(books.sprite);
-		window.draw(p.sprite);
+		window.draw(cat.sprite);
 		window.display();
     }
  }
