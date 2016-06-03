@@ -11,8 +11,7 @@
 	dx = 0;
 	dy = 0;
 	speed = 0;
-	isMove = false;
-	isSelect = false;
+	wrongPlace = false;
 	room = 0;
 }
 

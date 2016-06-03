@@ -8,7 +8,7 @@
 	public:
 		float dx, dy, speed;
 		int direction;
-		bool isMove, isSelect;
+		bool isMove, isSelect, wrongPlace;
 		int room;
 
 		Player(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY);

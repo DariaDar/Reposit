@@ -13,10 +13,12 @@ public:
 	Sprite sprite;
 	float x, y, w, h, posX, posY;
 	std::vector<Object> obj;
+	bool isSelected, isMove;
 
 	Furniture(String F, float X, float Y, float W, float H, float pX, float pY);
 	~Furniture();
 	FloatRect getRect();
+	void moving(Event &ev, RenderWindow &window, Vector2i pos);
 };
 
 #endif

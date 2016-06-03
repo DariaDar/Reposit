@@ -92,6 +92,8 @@ int main()
 	 Furniture mirror("tayles2.png", 90, 700, 110, 290, 1200, 300);
 	 Furniture sink("tayles2.png", 290, 440, 150, 240, 1190, 450);
 
+	//float dX = 0;
+	//float dY = 0;
 	  while (window.isOpen())
     {
 		
@@ -100,18 +102,21 @@ int main()
 		time = time/500;
 		Vector2i pos = Mouse::getPosition(window);
 
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
 			//>>>>>----Meow----<<<<<<
-			if (event.type == Event::MouseButtonPressed)
+			if (event.type == Event::MouseButtonPressed){
 					if (event.key.code == Mouse::Left)
 					{
 						meow(meow1, meow2, cat, pos);
 						cat.clickedThings(window, light);
 					}
+			}
+
+					toys.moving(event, window, pos);
 
 			//-----------------------------------------------------------------------------	
         }
@@ -150,6 +155,7 @@ int main()
 		}
 
 		window.draw(cat.sprite);
+		
 		window.display();
     }
  }
