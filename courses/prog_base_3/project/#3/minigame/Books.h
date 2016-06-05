@@ -9,12 +9,12 @@
  {
  public:
 	 int x, y, h, w;
-	 int bookNum;
+	 int truePos, curPos;
 	 Sprite sprite;
 
 
 	 Books(Texture &t, int x, int y, int H, int W, int num);
-	 void  setNewPos(int _x, int _y);
+	 void setNewPos(int _x, int _y, int pos);
  };
 
 #endif
