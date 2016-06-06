@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Object.h"
+#include "LevelCl.h"
 using namespace sf;
 
 class Furniture
@@ -13,12 +14,12 @@ public:
 	Sprite sprite;
 	float x, y, w, h, posX, posY;
 	std::vector<Object> obj;
-	bool isSelected, isMove;
+	bool isSelected, isMove, isPlayed;
 
 	Furniture(String F, float X, float Y, float W, float H, float pX, float pY);
 	~Furniture();
 	FloatRect getRect();
-	void moving(Event &ev, RenderWindow &window, Vector2i pos);
+	void moving(Event &ev, RenderWindow &window, Vector2i pos, String str, Level &lvl);
 };
 
 #endif

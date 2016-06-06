@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Furniture.h"
+#include "LevelCl.h"
 
 	Furniture::Furniture(String F, float X, float Y, float W, float H, float pX, float pY)
 	{
@@ -13,6 +14,7 @@
 		sprite.setPosition(posX, posY);
 		isSelected = false;
 		isMove = false;
+		isPlayed = false;
 	}
 
 	Furniture:: ~Furniture()
@@ -26,8 +28,9 @@
 		return FloatRect(x, y, w, h);
 	}
 
-	void Furniture:: moving(Event &ev, RenderWindow &window, Vector2i pos)
+	void Furniture:: moving(Event &ev, RenderWindow &window, Vector2i pos, String str, Level &lvl)
 	{
+		Object ob = lvl.GetObject(str);
 		static float dX = 0;
 		static float dY = 0;
 		if (ev.type == Event::MouseButtonPressed){
@@ -40,12 +43,20 @@
 				}
 			}
 		}
+				
+			
+			if(sprite.getGlobalBounds().intersects(ob.rect))
+			{
+					isMove == false; isPlayed = true;
+			}
+				
 				if (ev.type == Event::MouseButtonReleased){
 					if (ev.key.code == Mouse::Left){
 						isMove = false;
 						sprite.setColor(Color::White);
 					}
 				}
+
 
 				if (isMove)
 				sprite.setPosition(pos.x - dX, pos.y - dY);
