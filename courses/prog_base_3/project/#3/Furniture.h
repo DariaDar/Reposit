@@ -20,6 +20,7 @@ public:
 	~Furniture();
 	FloatRect getRect();
 	void moving(Event &ev, RenderWindow &window, Vector2i pos, String str, Level &lvl);
+	void  falling(Event &ev, RenderWindow &window, Vector2i pos, Level &lvl, float time);
 };
 
 #endif

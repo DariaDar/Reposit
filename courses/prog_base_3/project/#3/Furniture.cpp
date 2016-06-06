@@ -2,6 +2,7 @@
 #include "Furniture.h"
 #include "LevelCl.h"
 
+
 	Furniture::Furniture(String F, float X, float Y, float W, float H, float pX, float pY)
 	{
 		x = X; y = Y; w = W; h = H;
@@ -47,7 +48,7 @@
 			
 			if(sprite.getGlobalBounds().intersects(ob.rect))
 			{
-					isMove == false; isPlayed = true;
+				 isPlayed = true;
 			}
 				
 				if (ev.type == Event::MouseButtonReleased){
@@ -61,3 +62,41 @@
 				if (isMove)
 				sprite.setPosition(pos.x - dX, pos.y - dY);
 	}
+
+	void Furniture:: falling(Event &ev, RenderWindow &window, Vector2i pos, Level &lvl, float time)
+	{
+		static float tmpX = 0; 
+		static float tmpY = 0;
+		static float distance = 0;
+		Time delayTime = milliseconds(1);
+		Time delayTime2 = seconds(4);
+		isSelected = true;
+		printf("Selected");
+
+		if(isSelected)
+		{
+			isMove = true;
+			isSelected = false;
+
+			tmpX = 430;
+			tmpY = 430;
+		}
+		while(isMove)
+		{
+			distance = sqrt(pow(tmpX - x, 2) - pow(tmpY - y, 2));
+			if(distance > 2)
+			{
+				x += 0.1 * time * (tmpX - x) / distance;
+				y += 0.1 * time * (tmpY - y) / distance;
+				sprite.setPosition(x, y);
+				sleep(delayTime);
+			}
+			else
+			{
+				isMove = false;
+				sleep(delayTime2);
+			}
+		}
+
+	}
+
