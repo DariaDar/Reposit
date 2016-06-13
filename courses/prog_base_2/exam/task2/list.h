@@ -21,13 +21,6 @@
 typedef struct list_s list_t;
 typedef void (* list_dealloc_fn)(void *);
 
-typedef struct song_s
-{
-    int sNum;
-    char * name;
-    char * artist;
-};
-
 list_t * list_new(void);
 list_t * list_new_copy(list_t * original);
 list_t * list_new_dealloc(list_dealloc_fn deallocator);

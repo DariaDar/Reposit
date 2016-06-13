@@ -6,7 +6,7 @@ typedef struct clinic_s clinic_t;
 typedef struct patient_s patient_t;
 typedef struct doctor_s doctor_t;
 
-patient_t * patient_new(char * name, char * dName);
+patient_t * patient_new(char * name);
 void patient_delete(patient_t * p);
 doctor_t * doctor_new(char * name);
 void doctor_delete(doctor_t * d);
