@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="33" height="18" tilewidth="40" tileheight="40" nextobjectid="63">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="33" height="18" tilewidth="40" tileheight="40" nextobjectid="70">
  <tileset firstgid="1" name="back" tilewidth="40" tileheight="40" tilecount="3" columns="3">
   <image source="images/back.png" width="120" height="40"/>
  </tileset>
@@ -620,8 +620,11 @@
   <object id="51" name="light" x="807" y="391" width="40" height="39">
    <ellipse/>
   </object>
-  <object id="52" name="bound" x="1211" y="465.5" width="84" height="247"/>
   <object id="53" name="bound" x="1259.98" y="379.816" width="111.919" height="446.017" rotation="89.9305"/>
+  <object id="64" name="muse" x="163" y="252" width="134" height="72"/>
+  <object id="65" name="bound" x="916" y="441" width="321" height="75"/>
+  <object id="66" name="bound" x="1187" y="460" width="94" height="238"/>
+  <object id="67" name="shadows" x="1004" y="374" width="291" height="297"/>
  </objectgroup>
  <objectgroup name="FurnitureCollisions">
   <object id="54" name="toys" x="150" y="367" width="235" height="329"/>
@@ -629,11 +632,13 @@
    <ellipse/>
   </object>
   <object id="57" name="catPlace" x="396" y="387" width="73" height="90"/>
-  <object id="60" name="key" x="1065" y="598" width="43" height="41">
+  <object id="60" name="key" x="616" y="311" width="19" height="20">
    <ellipse/>
   </object>
-  <object id="61" name="mop" x="396" y="487" width="70" height="71">
+  <object id="61" name="mop" x="1078" y="533" width="70" height="71">
    <ellipse/>
   </object>
+  <object id="63" name="mouse" x="178" y="581" width="36" height="37"/>
+  <object id="68" name="fish" x="534" y="180" width="73" height="66"/>
  </objectgroup>
 </map>

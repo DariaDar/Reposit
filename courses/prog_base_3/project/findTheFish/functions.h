@@ -3,14 +3,14 @@
 #include <iostream>
 #include "Player.h"
 #include "Furniture.h"
-#include "menu.h"
 #include "LevelCl.h"
 #include <string>
-//#include <vector>
+#include <vector>
 #include <map>
 #include <list>
 
-
+void menu(RenderWindow &window);
 void MiniGame_Books();
 void mainLevel(RenderWindow &window);
-void miniGameLab();
+bool miniGameLab();
+void gameOver();

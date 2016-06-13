@@ -13,7 +13,8 @@
 		Sprite sprite;
 		float x, y, w, h;
 		std::vector<Object> obj;
-		bool rightPlace;
+		bool rightPlace, life;
+		int health;
 
 		_Mouse(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY);
 		~_Mouse();

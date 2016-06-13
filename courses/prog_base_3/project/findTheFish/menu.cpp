@@ -5,9 +5,11 @@
 
 void menu(RenderWindow &window)
  {
-	 Texture menuText1, menuText2, menuText3, menuBackground;
+	 Texture menuText1, menuText2, menuText3, menuBackground,loading;
 	 menuBackground.loadFromFile("images/menu1.jpg");
 	 menuText2.loadFromFile("images/load.png");
+	 loading.loadFromFile("images/loading.png");
+	 Sprite load(loading);
 	 Sprite menuLoad(menuText2);
 	 Sprite menuBg(menuBackground);
 	 bool isMenu = 1;
@@ -62,6 +64,8 @@ void menu(RenderWindow &window)
 		{
 			if(menuNum == 1)
 			{
+				window.draw(load);
+				window.display();
 				music.stop();
 				return;
 			}

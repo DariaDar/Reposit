@@ -21,7 +21,7 @@ void MiniGame_Books()
 
 	//>>>>>>>>FONT<<<<<<<<
 	 Font font;
-	 font.loadFromFile("umb.ttf");
+	 font.loadFromFile("fonts/weston.ttf");
 	 Text cont("", font, 38);
 	 cont.setString("Continue");
 	 cont.setPosition(200,600);
@@ -31,7 +31,7 @@ void MiniGame_Books()
 	Texture txt; 
 	Texture t; 
 	t.loadFromFile("images/books.png");
-	txt.loadFromFile("images/shelf.jpg");
+	txt.loadFromFile("images/shelf1.jpg");
 	Sprite menuBg(txt);
 	int cnt = 0; //check right position
 
@@ -100,22 +100,20 @@ void MiniGame_Books()
 							if(ptr1 == NULL)
 							{
 								ptr1 = books[i];
-								ptr1->sprite.setColor(Color::Green);
+								ptr1->sprite.setColor(Color::Magenta);
 							}
 							else if(ptr2 == NULL)
 							{
+								ptr1->sprite.setColor(Color::White);
 								ptr2 = books[i];
-								ptr1->sprite.setColor(Color::Yellow);
 
 								int xTmp = ptr1->x;
 								int yTmp = ptr1->y;
 								int posTmp = ptr1->curPos;
-								ptr1->sprite.setColor(Color::White);
+
 								ptr1->setNewPos(ptr2->x, ptr2->y, ptr2->curPos);
 								ptr2->setNewPos(xTmp, yTmp, posTmp);
 								sound.play();
-								printf("changed");
-								ptr2->sprite.setColor(Color::White);
 								ptr1 = NULL; ptr2 = NULL;
 							}
 						}

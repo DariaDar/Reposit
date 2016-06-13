@@ -792,13 +792,13 @@
   </data>
  </layer>
  <objectgroup name="Слой объектов 1">
-  <object id="3" name="book" x="47" y="315" width="80" height="306"/>
-  <object id="4" name="book" x="128" y="315" width="80" height="307"/>
-  <object id="5" name="book" x="209" y="316" width="80" height="309"/>
-  <object id="7" name="book" x="291" y="317" width="80" height="308"/>
-  <object id="8" name="book" x="373" y="317" width="80" height="308"/>
-  <object id="9" name="book" x="456" y="318" width="80" height="306"/>
-  <object id="10" name="book" x="538" y="318" width="75" height="305"/>
+  <object id="3" name="book" x="79" y="259" width="74" height="301"/>
+  <object id="4" name="book" x="159" y="258" width="77" height="303"/>
+  <object id="5" name="book" x="240" y="258" width="78" height="305"/>
+  <object id="7" name="book" x="322" y="259" width="79" height="304"/>
+  <object id="8" name="book" x="404" y="257" width="78" height="306"/>
+  <object id="9" name="book" x="486" y="257" width="80" height="306"/>
+  <object id="10" name="book" x="570" y="259" width="73" height="305"/>
  </objectgroup>
  <objectgroup name="2"/>
 </map>

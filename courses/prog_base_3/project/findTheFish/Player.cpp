@@ -5,7 +5,7 @@
 
 
 
-	Player:: Player(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY): Furniture(F, X,  Y, W,  H,  pX, pY)
+	Player:: Player(String F, Level &lev, float X, float Y, float W, float H, float pX, float pY, int t): Furniture(F, X,  Y, W,  H,  pX, pY, t)
 {
 	obj = lev.GetAllObjects();
 	dx = 0;
@@ -26,40 +26,40 @@
 
 		if(Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))
 		{
-			direction = 1; speed = 0.1;
-			currentFrame += 0.004 * time;
+			direction = 1; speed = (float)0.1;
+			currentFrame += (float)0.004 * time;
 			if(currentFrame > 3)
 				currentFrame -= 2;
 			sprite.setTextureRect(IntRect(160 * int(currentFrame), 150, 115, 135));
-			sprite.move(-0.1 * time, 0);		
+			sprite.move((float)-0.1 * time, 0);		
 		}
 		if(Keyboard::isKeyPressed(Keyboard::Right)|| (Keyboard::isKeyPressed(Keyboard::D)))
 		{
-			direction = 0; speed = 0.1;
-			currentFrame += 0.004 * time;
+			direction = 0; speed =(float) 0.1;
+			currentFrame += (float)0.004 * time;
 			if(currentFrame > 3)
 				currentFrame -= 2;
 			sprite.setTextureRect(IntRect(155 * int(currentFrame), 275, 115, 150));
-			sprite.move(0.1 * time, 0);	
+			sprite.move((float)0.1 * time, 0);	
 		}
 		if(Keyboard::isKeyPressed(Keyboard::Up)|| (Keyboard::isKeyPressed(Keyboard::W)))
 		{
-			direction = 3; speed = 0.1;
-			currentFrame += 0.004 * time;
+			direction = 3; speed = (float)0.1;
+			currentFrame += (float)0.004 * time;
 			if(currentFrame > 3)
 				currentFrame -= 2;
 			sprite.setTextureRect(IntRect(160 * int(currentFrame), 430, 75, 160));
-			sprite.move(0, -0.1 * time);
+			sprite.move(0, (float)-0.1 * time);
 		}
 		
 		if(Keyboard::isKeyPressed(Keyboard::Down)|| (Keyboard::isKeyPressed(Keyboard::S)))
 		{
-			direction = 2; speed = 0.1;
-			currentFrame += 0.004 * time;
+			direction = 2; speed = (float)0.1;
+			currentFrame += (float)0.004 * time;
 			if(currentFrame > 3)
 				currentFrame -= 2;
 			sprite.setTextureRect(IntRect(160 * int(currentFrame), 15, 70, 130));
-			sprite.move(0, 0.1 * time);
+			sprite.move(0,(float)0.1 * time);
 		}
 	}
 
@@ -68,6 +68,10 @@
 		for (int i = 0; i < obj.size(); i++)
 		  if (getRect().intersects(obj[i].rect))
 		  {
+			  if(obj[i].name == "none")
+			  {
+				  room = 2;
+			  }
 			  if(room == 2 && obj[i].name == "shadows")
 			  {
 				  obj[i].name = "none";
@@ -104,28 +108,6 @@
 		   }
 	}
 
-	void Player:: clickedThings(RenderWindow &window, Furniture obj)
-	{
-		if(obj.isPlayed == true)
-		{
-			static int cnt = 0;
-			Vector2i pos = Mouse::getPosition(window);
-			if(obj.sprite.getGlobalBounds().contains(pos.x, pos.y))
-			{
-				if(cnt % 2 == 0)
-				{
-					room = 2; cnt++;
-					printf("cnt++ %i", cnt);
-				}
-				else
-				{
-					room = 1; cnt--;
-					printf("cnt-- %i", cnt);
-				}
-			}
-		}
-	}
-
 
 	void Player:: Update(float time)
 	{
@@ -159,4 +141,4 @@
 		sprite.setPosition(x, y);
 		checkCollisionWithMap(dx, dy);
 	}
-	 
+	

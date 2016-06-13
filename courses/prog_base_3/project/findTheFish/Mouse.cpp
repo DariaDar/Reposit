@@ -6,18 +6,20 @@
 		image.loadFromFile("images/" + F);
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
-		sprite.setTextureRect(IntRect(X,Y,w,h));
+		sprite.setTextureRect(IntRect((int)X,(int)Y,(int)w,(int)h));
 		sprite. setOrigin(w / 2, h / 2);
 		obj = lev.GetAllObjects();
 		dx = 0;
 		dy = 0;
 		speed = 0;
 		rightPlace = false;
+		life = true;
+		health = 50;
 	}
 
 	_Mouse:: ~_Mouse()
 	{
-		printf("Player:: ~Player()");
+		printf("_Mouse:: ~_Mouse()");
 	}
 
 	void _Mouse:: control(float time)
@@ -26,40 +28,40 @@
 
 		if(Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))
 		{
-			direction = 1; speed = 0.1;
-			currentFrame += 0.008 * time;
+			direction = 1; speed = (float)0.1;
+			currentFrame +=(float) 0.008 * time;
 			if(currentFrame > 4)
 				currentFrame -= 4;
 			sprite.setTextureRect(IntRect(2 * int(currentFrame), 68, 40, 26));
-			sprite.move(-0.1 * time, 0);		
+			sprite.move((float)-0.1 * time, 0);		
 		}
 		if(Keyboard::isKeyPressed(Keyboard::Right)|| (Keyboard::isKeyPressed(Keyboard::D)))
 		{
-			direction = 0; speed = 0.1;
-			currentFrame += 0.008 * time;
+			direction = 0; speed = (float)0.1;
+			currentFrame += (float)0.008 * time;
 			if(currentFrame > 4)
 				currentFrame -= 4;
 			sprite.setTextureRect(IntRect(3 * int(currentFrame), 112, 40, 28));
-			sprite.move(0.1 * time, 0);	
+			sprite.move((float)0.1 * time, 0);	
 		}
 		if(Keyboard::isKeyPressed(Keyboard::Up)|| (Keyboard::isKeyPressed(Keyboard::W)))
 		{
-			direction = 3; speed = 0.1;
-			currentFrame += 0.008 * time;
+			direction = 3; speed = (float)0.1;
+			currentFrame += (float)0.008 * time;
 			if(currentFrame > 4)
 				currentFrame -= 4;
 			sprite.setTextureRect(IntRect(2 * int(currentFrame), 160, 31, 27));
-			sprite.move(0, -0.1 * time);
+			sprite.move(0,(float) -0.1 * time);
 		}
 		
 		if(Keyboard::isKeyPressed(Keyboard::Down)|| (Keyboard::isKeyPressed(Keyboard::S)))
 		{
-			direction = 2; speed = 0.1;
-			currentFrame += 0.008 * time;
+			direction = 2; speed =(float) 0.1;
+			currentFrame += (float)0.008 * time;
 			if(currentFrame > 4)
 				currentFrame -= 4;
-			sprite.setTextureRect(IntRect(2 * int(currentFrame), 21, 32, 25));
-			sprite.move(0, 0.1 * time);
+			sprite.setTextureRect(IntRect(2 * int(currentFrame), 21, 32, 23));
+			sprite.move(0, (float)0.1 * time);
 		}
 	}
 
@@ -70,6 +72,8 @@
 		  {
 			if((obj[i].name == "end"))
 				rightPlace = true;
+			if((obj[i].name == "trap" && health >= 0))
+				health -= (double)0.01;
 			  if (obj[i].name == "bound")
 			  {
 				 if (Dy > 0)
@@ -97,6 +101,7 @@
 
 	void _Mouse:: Update(float time)
 	{
+		if(life)
 		control(time);	
 		switch(direction)
 		{
@@ -126,6 +131,11 @@
 		speed = 0;
 		sprite.setPosition(x, y);
 		checkCollisionWithMap(dx, dy);
+		if(health <= 0)
+		{
+			life = false;
+			speed = 0;
+		}
 	}
 	 
 

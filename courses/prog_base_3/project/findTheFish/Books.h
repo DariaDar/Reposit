@@ -14,6 +14,7 @@
 
 
 	 Books(Texture &t, int x, int y, int H, int W, int num);
+	 ~Books();
 	 void setNewPos(int _x, int _y, int pos);
  };
 

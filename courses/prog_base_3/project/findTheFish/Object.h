@@ -5,22 +5,22 @@
 
 struct Object
 {
-	int GetPropertyInt(std::string name);//номер свойства объекта в нашем списке
+	int GetPropertyInt(std::string name);
 	float GetPropertyFloat(std::string name);
 	std::string GetPropertyString(std::string name);
  
-	std::string name;//объ€вили переменную name типа string
-	std::string type;//а здесь переменную type типа string
-	sf::Rect<float> rect;//тип Rect с нецелыми значени€ми
-	std::map<std::string, std::string> properties;//создаЄм ассоциатиный массив. ключ - строковый тип, значение - строковый
+	std::string name;
+	std::string type;
+	sf::Rect<float> rect;
+	std::map<std::string, std::string> properties;
  
-	sf::Sprite sprite;//объ€вили спрайт
+	sf::Sprite sprite;
 };
  
-struct Layer//слои
+struct Layer
 {
-	int opacity;//непрозрачность сло€
-	std::vector<sf::Sprite> tiles;//закидываем в вектор тайлы
+	int opacity;
+	std::vector<sf::Sprite> tiles;
 };
 
 #endif 

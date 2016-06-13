@@ -3,14 +3,15 @@
 #include "stdafx.h"
 #include <iostream>
 #include "functions.h"
-#include "menu.h"
+
 
 
 int main()
  {
 	 RenderWindow window(VideoMode(1300,702),"Find the fish");
-	 window.setPosition(Vector2i(10,10));
+	 window.setPosition(Vector2i(0,0));
 	 menu(window);
 	 mainLevel(window);
+	 //MiniGame_Books();
 	 return 0;
  }
