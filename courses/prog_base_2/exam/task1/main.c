@@ -15,7 +15,7 @@ int getNumber(char * str)
     hStr = strtok(str, "0123456789");
     while(hStr != NULL)
     {
-        hStr = strtok(NULL, ".\n");
+        hStr = strtok(NULL, ".");
         cnt++;
     }
     return cnt - 1;
@@ -25,9 +25,15 @@ int getNumber(char * str)
 int main()
 {
     test();
-    char str2[] = "hdf2";
     char str[] = "main2.0cat3.7Roll72.5";
-    int cnt = getNumber(str2);
+
+    int cnt = getNumber(str);
+    if(cnt == -5)
+    {
+        printf("Empty string.");
+        return 0;
+    }
+
     printf("Number count: %i", cnt);
     return 0;
 }

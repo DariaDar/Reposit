@@ -17,7 +17,7 @@ struct doctor_s
 
 struct clinic_s
 {
-    char * title;
+    char title[100];
 	int numOfDoctors;
 	int numOfPatients;
 	list_t * doctors;
@@ -83,6 +83,11 @@ list_t * doctor_getPatienceList(doctor_t * doc)
 int doctor_getNumOfPatience(doctor_t * doc)
 {
     return doc->numOfPatients;
+}
+
+char * doctor_getName(doctor_t * doc)
+{
+    return doc->name;
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
